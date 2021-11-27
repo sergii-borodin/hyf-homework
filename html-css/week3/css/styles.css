@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 ul {
@@ -44,7 +44,7 @@ body {
   line-height: 10rem;
 }
 
-#nav-item {
+.nav-item {
   width: 60rem;
 }
 
@@ -179,7 +179,7 @@ fieldset {
   margin: 5rem auto;
 }
 
-#next-step-button {
+.next-step-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -248,4 +248,19 @@ fieldset {
   height: 40rem;
   object-fit: contain;
 }
-/* PAGE3 STYLING END*/ ;
+/* PAGE3 STYLING END*/
+
+@media screen and (max-width: 1400px) {
+  .header-container,
+  .form-top-container,
+  .form-bottom-container,
+  .third-page-form-bottom-container,
+  .second-page-form-bottom-container {
+    display: block;
+    margin: 0px auto;
+  }
+
+  body {
+    background-color: whitesmoke;
+  }
+}
