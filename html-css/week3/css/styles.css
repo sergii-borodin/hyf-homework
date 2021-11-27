@@ -49,7 +49,7 @@ body {
 }
 
 .title {
-  font-size: 8rem;
+  font-size: 5rem;
 }
 
 .text-container {
@@ -104,7 +104,7 @@ body {
 /* SUBMIT FORM START*/
 .form-top-container {
   display: flex;
-  padding: 3rem 7rem;
+  margin: 3rem 7rem;
 }
 .form-container-left-side {
   display: flex;
@@ -141,7 +141,7 @@ body {
   display: flex;
   text-align: center;
   justify-content: flex-end;
-  padding: 10rem 20rem 3rem 3rem;
+  margin: 10rem 20rem 3rem 3rem;
 }
 
 .form-text-area-desc {
@@ -253,15 +253,40 @@ fieldset {
 @media screen and (max-width: 1400px) {
   .form-top-container,
   .form-bottom-container,
+  .text-area-container,
   .third-page-form-bottom-container,
   .second-page-form-bottom-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
 
   body {
     background-color: whitesmoke;
+  }
+  .text-area-container,
+  .form-container-left-side,
+  .form-container-right-side {
+    width: 100%;
+    align-items: flex-start;
+  }
+  .text-area {
+    max-width: 800px;
+    height: 15rem;
+    margin-right: 2rem;
+    border: solid 1px darkgray;
+  }
+  .third-page-form-bottom-container {
+    align-items: flex-end;
+  }
+  .wraper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-input {
+    width: 30rem;
   }
 }
