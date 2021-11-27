@@ -251,13 +251,14 @@ fieldset {
 /* PAGE3 STYLING END*/
 
 @media screen and (max-width: 1400px) {
-  .header-container,
   .form-top-container,
   .form-bottom-container,
   .third-page-form-bottom-container,
   .second-page-form-bottom-container {
-    display: block;
-    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   body {
