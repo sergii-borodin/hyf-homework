@@ -22,3 +22,25 @@ if (shouldShowResultInDogYears) {
     `Your dog will be ${dogYear} human years old in ${dogYearFuture}`
   );
 }
+
+// Housey pricey (A house price estimator)
+
+const arrOfFriends = ["Peter", "Juliya"];
+const arrOfWidth = [8, 5];
+const arrOfDepth = [10, 11];
+const arrOfHight = [10, 8];
+const arrgOfGardenSizeInM2 = [100, 70];
+const houseCosts = [2500000, 1000000];
+
+for (let i = 0; i < arrOfFriends.length; i++) {
+  const housePriceAccordingFormula =
+    arrOfWidth[i] * arrOfDepth[i] * arrOfHight[i] * 2.5 * 1000 +
+    arrgOfGardenSizeInM2[i] * 300;
+  if (housePriceAccordingFormula > houseCosts[i]) {
+    console.log(arrOfFriends[i] + ", you pay more, then it should be");
+  } else if (housePriceAccordingFormula < houseCosts[i]) {
+    console.log(arrOfFriends[i] + ", you pay less, then it should be");
+  } else {
+    console.log(arrOfFriends[i] + ", you pay as it should be");
+  }
+}
