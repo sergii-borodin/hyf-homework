@@ -1,14 +1,12 @@
 // loginToFreeCodeCamp = sergii-borodin
 
 // Age-ify (A future age calculator)
-
 const yearOfBirth = 1989;
 const yearFuture = 2027;
 const age = yearFuture - yearOfBirth;
 console.log("You will be " + age + " years old in " + yearFuture);
 
 // Goodboy-Oldboy (A dog age calculator)
-
 const dogYearOfBirth = 2020;
 const dogYearFuture = 2027;
 const shouldShowResultInDogYears = true;
@@ -24,7 +22,6 @@ if (shouldShowResultInDogYears) {
 }
 
 // Housey pricey (A house price estimator)
-
 const arrOfFriends = ["Peter", "Juliya"];
 const arrOfWidth = [8, 5];
 const arrOfDepth = [10, 11];
@@ -44,3 +41,35 @@ for (let i = 0; i < arrOfFriends.length; i++) {
     console.log(arrOfFriends[i] + ", you pay as it should be");
   }
 }
+
+// Ez Namey (Startup name generator)
+const firstWords = [
+  "easy",
+  "awesome",
+  "perfect",
+  "best",
+  "pleasant",
+  "gentle",
+  "smart",
+  "cool",
+  "fun",
+  "fresh",
+];
+const secondWords = [
+  "solution",
+  "corporation",
+  "independence",
+  "future",
+  "communication",
+  "deal",
+  "pleasure",
+  "ambition",
+  "foundation",
+  "decision",
+];
+
+const randomNumber = Math.floor(Math.random() * 10);
+const startupName = firstWords[randomNumber] + " " + secondWords[randomNumber];
+console.log(
+  `The startup: ${startupName} contains ${startupName.length} characters`
+);
