@@ -68,8 +68,7 @@ const secondWords = [
   "decision",
 ];
 
-const randomNumber = Math.floor(Math.random() * 10);
-const startupName = firstWords[randomNumber] + " " + secondWords[randomNumber];
+const startupName = firstWords[Math.floor(Math.random() * firstWords.length)] + " " + secondWords[Math.floor(Math.random() * secondWords.length)];
 console.log(
   `The startup: ${startupName} contains ${startupName.length} characters`
 );
