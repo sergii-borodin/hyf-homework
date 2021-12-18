@@ -4,21 +4,6 @@
 
 // Flight booking fullname function
 
-// Even for a startup as successful as Smart - ease there needs to be money in the bank.
-//  A customer from a flight booking website has asked for our help creating a specific part of their application:
-
-// When a user books a flight they write their firstname and surname,
-//     but when the ticket is printed a fullname should be displayed.It is our responsibility to create that.
-
-// Create a function called getFullname that returns a fullname.
-// It should have two parameters: firstname and surname.
-
-// getFullname("Benjamin", "Hughes"); // returns "Benjamin Hughes"
-// Now try to create two variables fullname1 and fullname2 these two variables should be assigned
-//  to calling the getFullname function.
-
-// Log out the two fullname variables.
-
 function getFullName(firstname, surname) {
   const fullName = firstname + " " + surname;
   return console.log(fullName);
@@ -28,25 +13,6 @@ const fullname1 = getFullName("Benjamin", "Hughes");
 const fullname2 = getFullName("Richard", "Chaplin");
 
 // Formal fullname
-// On the flight website the user has the possibility to check a checkbox
-// that indicates if the user wants to be adressed formally.
-// Lets also change getFullname to include support for formal name.
-
-// Create an extra parameter useFormalName that is a boolean.
-//  If it is true the function should add a Lord in front of the name.
-
-// getFullname("Benjamin", "Hughes", true); // returns "Lord Benjamin Hughes"`
-// getFullname("Benjamin", "Hughes", false); // returns "Benjamin Hughes"
-// What do we do if useFormalName is not given as an argument?
-
-//     Remember to consider someone calling the function with an empty string
-//  as firstname and lastname.
-
-// Try out your code by pasting your getFullname function in the javascript part
-//  of this codepen: https://codepen.io/hackyourfuture-cph/pen/jJWwbN
-
-// But what if the person is a woman ? Describe how you would fix the getFullname
-//  so it also works for women
 
 function getFullname(firstname, surname, useFormalName, gender) {
   const fullName = firstname + " " + surname;
@@ -102,8 +68,6 @@ function getEventWeekday(daysToEvent) {
   ];
   const dayOfEventHeld = daysOfWeek[numerDayOfWeek];
   console.log(currentDate);
-  console.log(currentDay);
-  console.log(numerDayOfWeek);
   console.log(
     `A message from calendar: 'Remember that you have an event on ${dayOfEventHeld}'`
   );
@@ -132,33 +96,38 @@ console.log(clothesToWear);
 
 const class07Students = [];
 function addStudentToClass(studentName) {
-  for (let i = 0; i < class07Students.length - 1; i++) {
-    const currentStudent = array[i];
-    console.log(currentStudent);
-    if (currentStudent !== studentName) {
-      if (class07Students.length < 6 || studentName === "Margrethe 2") {
-        class07Students.push(studentName);
-        console.log(class07Students);
-      } else if (studentName === "Margrethe 2") {
-      } else {
-        return console.log("Cannot add more students to class 07");
-      }
+  const isInclude = class07Students.includes(studentName);
+  if (studentName === "") {
+    console.log("Please enter your name!");
+  } else if (isInclude) {
+    console.log("Student with this name is already exist in our study group");
+  } else {
+    if (class07Students.length < 6 || studentName === "Margrethe 2") {
+      class07Students.push(studentName);
+      console.log(class07Students);
     } else {
-      return console.log("This student is allready exist in the group");
+      console.log("Cannot add more students to class 07");
     }
   }
 }
 
 function getNumberOfStudents() {
-  // You write code here
+  const numberOfstudents = class07Students.length;
+  console.log(`Number of students in class 07 is ${numberOfstudents}`);
+  return numberOfstudents;
 }
 
 addStudentToClass("Jhon");
-addStudentToClass("Justin");
+addStudentToClass("");
+addStudentToClass("Emma");
 addStudentToClass("Emma");
 addStudentToClass("Elton");
 addStudentToClass("Christina");
 addStudentToClass("Daniel");
 addStudentToClass("Sunny");
+addStudentToClass("Margrethe 2");
 addStudentToClass("Sully");
 addStudentToClass("Margrethe 2");
+addStudentToClass("Rick");
+
+getNumberOfStudents(class07Students);
