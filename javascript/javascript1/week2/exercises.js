@@ -5,32 +5,34 @@
 // Flight booking fullname function
 
 function getFullName(firstname, surname) {
-  const fullName = firstname + " " + surname;
-  return console.log(fullName);
+  const fullName = `${firstname} ${surname}`;
+  return fullName;
 }
 
 const fullname1 = getFullName("Benjamin", "Hughes");
 const fullname2 = getFullName("Richard", "Chaplin");
 
+console.log(fullname1);
+console.log(fullname2);
 // Formal fullname
 
 function getFullname(firstname, surname, useFormalName, gender) {
-  const fullName = firstname + " " + surname;
+  const fullName = `${firstname} ${surname}`;
 
   if (useFormalName && gender === "male") {
-    const formalMaleName = "Lord " + fullName;
+    const formalMaleName = `Lord ${fullName}`;
     console.log(formalMaleName);
     return formalMaleName;
   } else if (useFormalName && gender === "female") {
-    const formalFemaleName = "Lady " + fullName;
+    const formalFemaleName = `Lady ${fullName}`;
     console.log(formalFemaleName);
     return formalFemaleName;
   } else if (!useFormalName && gender === "male") {
-    const formalMaleName = "Lord " + fullName;
+    const formalMaleName = `Lord ${fullName}`;
     console.log(formalMaleName);
     return formalMaleName;
   } else if (!useFormalName && gender === "female") {
-    const formalFemaleName = "Lady " + fullName;
+    const formalFemaleName = `Lady ${fullName}`;
     console.log(formalFemaleName);
     return formalFemaleName;
   } else if (
@@ -38,9 +40,9 @@ function getFullname(firstname, surname, useFormalName, gender) {
     gender !== "male" ||
     gender !== "female"
   ) {
-    return console.log(
-      "To choose gender and a way, how you want to be addressed(formally or not) is required!"
-    );
+    const wrongInputWarning =
+      "To choose gender and a way, how you want to be addressed(formally or not) is required!";
+    return wrongInputWarning;
   }
 }
 
@@ -48,8 +50,8 @@ getFullname("Benjamin", "Hughes", true, "male");
 getFullname("Barbara", "Hughes", true, "female");
 getFullname("Benjamin", "Hughes", false, "male");
 getFullname("Jenifer", "Hughes", false, "female");
-getFullname("Benjamin", "Hughes", "male");
-getFullname("Benjamin", "Hughes", true);
+console.log(getFullname("Benjamin", "Hughes", "male"));
+console.log(getFullname("Benjamin", "Hughes", true));
 
 // Event application
 
@@ -67,26 +69,21 @@ function getEventWeekday(daysToEvent) {
     "Saturday",
   ];
   const dayOfEventHeld = daysOfWeek[numerDayOfWeek];
-  console.log(currentDate);
-  console.log(
-    `A message from calendar: 'Remember that you have an event on ${dayOfEventHeld}'`
-  );
+  const reminderMessage = `A message from calendar: 'Remember that you have an event on ${dayOfEventHeld}'`;
+  return reminderMessage;
 }
 
-// With todays weekday a tuesday
-console.log(getEventWeekday(9)); // Logs out "Thursday"
-
-// With todays weekday a Friday
-console.log(getEventWeekday(2)); // Logs out "Sunday"
+console.log(getEventWeekday(9));
+console.log(getEventWeekday(2));
 
 // Weather wear
 
 function chooseClothesToWear(temperature) {
   if (temperature < 0) {
-    console.log("coat and a warm pants");
+    return "coat and a warm pants";
   } else if (temperature > 15) {
-    console.log("shorts and a t-shirt");
-  } else console.log("jacket and pants");
+    return "shorts and a t-shirt";
+  } else return "jacket and pants";
 }
 
 const clothesToWear = chooseClothesToWear(18);
@@ -98,36 +95,36 @@ const class07Students = [];
 function addStudentToClass(studentName) {
   const isInclude = class07Students.includes(studentName);
   if (studentName === "") {
-    console.log("Please enter your name!");
+    return "Please enter your name!";
   } else if (isInclude) {
-    console.log("Student with this name is already exist in our study group");
+    return "Student with this name is already exist in our study group";
   } else {
     if (class07Students.length < 6 || studentName === "Margrethe 2") {
       class07Students.push(studentName);
-      console.log(class07Students);
+      return class07Students;
     } else {
-      console.log("Cannot add more students to class 07");
+      return "Cannot add more students to class 07";
     }
   }
 }
 
 function getNumberOfStudents() {
   const numberOfstudents = class07Students.length;
-  console.log(`Number of students in class 07 is ${numberOfstudents}`);
-  return numberOfstudents;
+  const numberOfstudentsMessage = `Number of students in class 07 is ${numberOfstudents}`;
+  return numberOfstudentsMessage;
 }
 
-addStudentToClass("Jhon");
-addStudentToClass("");
-addStudentToClass("Emma");
-addStudentToClass("Emma");
-addStudentToClass("Elton");
-addStudentToClass("Christina");
-addStudentToClass("Daniel");
-addStudentToClass("Sunny");
-addStudentToClass("Margrethe 2");
-addStudentToClass("Sully");
-addStudentToClass("Margrethe 2");
-addStudentToClass("Rick");
+console.log(addStudentToClass("Jhon"));
+console.log(addStudentToClass(""));
+console.log(addStudentToClass("Emma"));
+console.log(addStudentToClass("Emma"));
+console.log(addStudentToClass("Elton"));
+console.log(addStudentToClass("Christina"));
+console.log(addStudentToClass("Daniel"));
+console.log(addStudentToClass("Sunny"));
+console.log(addStudentToClass("Sully"));
+console.log(addStudentToClass("Margrethe 2"));
+console.log(addStudentToClass("Margrethe 2"));
+console.log(addStudentToClass("Rick"));
 
-getNumberOfStudents(class07Students);
+console.log(getNumberOfStudents(class07Students));
