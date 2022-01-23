@@ -22,7 +22,7 @@ function changeNames(name) {
   for (let i = 0; i < names.length; i++) {
     const element = names[i];
     if (element === name) {
-      names.splice(1, 1);
+      names.splice(i, 1);
     }
   }
   return names;
