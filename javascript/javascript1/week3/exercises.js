@@ -22,7 +22,7 @@ function changeNames(name) {
   for (let i = 0; i < names.length; i++) {
     const element = names[i];
     if (element === name) {
-      names.splice(1, 1);
+      names.splice(i, 1);
     }
   }
   return names;
@@ -235,32 +235,17 @@ const sixthNote = getNote(4);
 
 console.log(notes); // [{content: 'Pick up groceries', id: 1}, {content: 'Do laundry', id: 2}]
 
-function logOutNotesFormatted(id) {
-  if (id > -1 && id <= notes.length + 1) {
-    for (let i = 0; i < notes.length; i++) {
-      if (id === notes[i].id) {
-        console.log(notes[i].content);
-        return notes[i].content;
-      }
-    }
-    const idError =
-      "The note with this id doesn't exist! Please enter a correct id";
-    console.log(idError);
-    return idError;
-  } else if (typeof id === "string") {
-    const formatError =
-      "This id format isn't correct. Please enter a correct id";
-    console.log(formatError);
-    return formatError;
+function logOutNotesFormatted(notes) {
+  for (let i = 0; i < notes.length; i++) {
+    console.log(
+      `The note with id: ${i}, has the following note text: ${notes[i].content}`
+    );
   }
+  return notes;
 }
 
-logOutNotesFormatted(1);
-logOutNotesFormatted(2);
-logOutNotesFormatted("qwerty");
-logOutNotesFormatted(4);
-logOutNotesFormatted(null);
-logOutNotesFormatted(3);
+logOutNotesFormatted(notes);
+
 // should log out the text below
 
 // The note with id: 1, has the following note text: Pick up groceries
