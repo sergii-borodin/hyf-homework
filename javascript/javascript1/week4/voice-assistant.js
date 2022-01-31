@@ -107,13 +107,27 @@ function getReply(command) {
 
   // Set a timer for 4 minutes
   // Means that timer can be seted only in minutes
-  if (command.includes("timer")) {
+  if (command.includes("timer" && "minutes")) {
     const minutes = command.replace(/\D/g, "");
     const milliseconds = minutes * 1000 * 60;
     const setTimer = setTimeout(() => {
-      console.log("Timer done");
+      console.log("4 minutes timer done");
     }, milliseconds);
     return `Timer set for ${minutes} minutes`;
+  } else if (command.includes("timer" && "seconds")) {
+    const seconds = command.replace(/\D/g, "");
+    const milliseconds = seconds * 1000;
+    const setTimer = setTimeout(() => {
+      console.log("4 seconds timer done");
+    }, milliseconds);
+    return `Timer set for ${seconds} seconds`;
+  } else if (command.includes("timer" && "hours")) {
+    const hours = command.replace(/\D/g, "");
+    const milliseconds = hours * 1000 * 60 * 60;
+    const setTimer = setTimeout(() => {
+      console.log("4 hours timer done");
+    }, milliseconds);
+    return `Timer set for ${hours} hours`;
   }
 }
 
@@ -128,3 +142,5 @@ console.log(getReply("What day is it today?"));
 console.log(getReply("what is 3 + 3"));
 console.log(getReply("what is 4 * 12"));
 console.log(getReply("Set a timer for 4 minutes"));
+console.log(getReply("Set a timer for 4 seconds"));
+console.log(getReply("Set a timer for 4 hours"));
