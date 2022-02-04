@@ -1,4 +1,5 @@
-const inputRef = document.getElementById("input-field");
+const nameInputRef = document.getElementById("nameInput");
+const priceInputRef = document.getElementById("priceInput");
 
 console.log("Script loaded");
 
@@ -32,14 +33,25 @@ function renderProducts(products) {
 
 renderProducts(products); // This should create the ul and the li's with the individual products details
 
-function inputChange(event) {
+function onNameInputChange(event) {
   const inputValue = event.target.value.toLowerCase();
-  const filtredProducts = products.filter((product) => {
+  const filtredProductsByName = products.filter((product) => {
     return product.name.toLowerCase().includes(inputValue.toLowerCase());
   });
-  console.log("filtredProducts", filtredProducts);
+  console.log("filtredProductsByName", filtredProductsByName);
   productList.innerHTML = " ";
-  renderProducts(filtredProducts);
+  renderProducts(filtredProductsByName);
 }
 
-inputRef.addEventListener("input", inputChange);
+function onPriceInputChange(event) {
+  const inputValue = event.target.value;
+  const filtredProductsByPrice = products.filter((product) =>
+    product.price <= inputValue ? product : null
+  );
+  console.log("filtredProductsByPrice", filtredProductsByPrice);
+  productList.innerHTML = " ";
+  renderProducts(filtredProductsByPrice);
+}
+
+nameInputRef.addEventListener("input", onNameInputChange);
+priceInputRef.addEventListener("input", onPriceInputChange);
