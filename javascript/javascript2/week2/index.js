@@ -1,11 +1,4 @@
 let numbers = [1, 2, 3, 4];
-//let newNumbers = [];
-
-// for (let i = 0; i < numbers.length; i++) {
-//   if (numbers[i] % 2 !== 0) {
-//     newNumbers[i] = numbers[i] * 2;
-//   }
-// }
 
 const newNumbers = numbers
   .filter((number) => number % 2 !== 0)
@@ -91,25 +84,17 @@ console.log(
 );
 
 // Create an array of movies where a word in the title is duplicated.
-//     Fx "Star Wars: The Clone Wars" the word Wars is duplicated.
-//     Here are some madeup examples of movies with duplicated words in the title:
-// "The three men and the pistol", "Chase three - The final chase"
+
 const arrDupMovies = [];
 const moviesWithDuplicatedWordInTitle = movies.forEach((movie) => {
   const arrTitleWords = movie.title.split(" ");
   arrTitleWords.sort((a, b) => {
     if (a === b) {
-      arrDupMovies.push(movie);
+      if (!arrDupMovies.includes(movie)) {
+        arrDupMovies.push(movie);
+      }
     }
   });
-
-  //   for (const word of arrTitleWords) {
-  //     const testArr = [];
-  //     test;
-  //     if (arrTitleWords.includes(word)) {
-  //       arrDupMovies.push(movie);
-  //     }
-  //   }
 });
 
 console.log(arrDupMovies);
@@ -120,7 +105,25 @@ function getAverageMoviesRating(params) {
     (total, movie) => total + movie.rating,
     0
   );
-  return averageMoviesRating / movies.length;
+  return Math.round((averageMoviesRating / movies.length) * 10) / 10;
 }
 
 console.log(getAverageMoviesRating(movies));
+
+// Count the total number of Good, Average and Bad movies using reduce.
+//  A return could fx be { goodMovies: 33, averageMovies: 45, goodMovies: 123 } Optional
+// const movieTagCounter = {
+//   goodMovies: 0,
+//   averageMovies: 0,
+//   badMovies: 0,
+// };
+// const movieByTagCounter = newMoviesWithRatingTag.reduce((movie) => {
+//   if (movie.tag === "Good") {
+//     movieTagCounter.goodMovies = +1;
+//   } else if (movie.tag === "Average") {
+//     movieTagCounter.averageMovies = +1;
+//   } else if (movie.tag === "Bad") {
+//     movieTagCounter.badMovies = +1;
+//   }
+// }, 0);
+// console.log(movieByTagCounter);
