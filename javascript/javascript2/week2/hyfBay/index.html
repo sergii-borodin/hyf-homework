@@ -1,19 +1,41 @@
 <head>
   <title>HyfBay</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" type="text/css" href="main.css" />
+  <link rel="stylesheet" type="text/css" href="./main.css" />
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:400,800"
     rel="stylesheet"
   />
 </head>
 <body>
-  <main>
-    <input id="nameInput" type="text" />
-    <input id="priceInput" type="number" />
+  <header class="header">
+    <div id="logo">
+      <p>HYFBAY</p>
+    </div>
+  </header>
+  <main class="container">
+    <div>
+      <input
+        class="input"
+        id="nameInput"
+        type="text"
+        placeholder="Search for a product"
+      />
+      <input
+        class="input"
+        id="priceInput"
+        type="number"
+        placeholder="Set maximum price"
+      />
+    </div>
 
-    <ul id="productsList"></ul>
+    <div>
+      <ul id="productsList">
+        List of available products:
+      </ul>
+    </div>
   </main>
+  <footer class="footer"></footer>
   <script src="hyfBayHelpers.js"></script>
   <script src="main.js"></script>
 </body>

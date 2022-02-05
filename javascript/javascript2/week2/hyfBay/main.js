@@ -1,3 +1,4 @@
+// References on a HTML-elements
 const nameInputRef = document.getElementById("nameInput");
 const priceInputRef = document.getElementById("priceInput");
 
@@ -20,11 +21,12 @@ function renderProducts(products) {
     productItem.appendChild(productName);
 
     const productPrice = document.createElement("p");
-    productPrice.innerHTML = product.price;
+    productPrice.innerHTML = `Price : ${product.price}`;
+
     productItem.appendChild(productPrice);
 
     const productRating = document.createElement("p");
-    productRating.innerHTML = product.rating;
+    productRating.innerHTML = `Rating : ${product.rating}`;
     productItem.appendChild(productRating);
 
     productList.appendChild(productItem);
@@ -33,6 +35,8 @@ function renderProducts(products) {
 
 renderProducts(products); // This should create the ul and the li's with the individual products details
 
+// The callback function implementation from a event listener function.
+// Which tracking a changes on a products price input.
 function onNameInputChange(event) {
   const inputValue = event.target.value.toLowerCase();
   const filtredProductsByName = products.filter((product) => {
@@ -43,6 +47,8 @@ function onNameInputChange(event) {
   renderProducts(filtredProductsByName);
 }
 
+// The callback function implementation from a event listener function.
+// Which tracking a changes on a products name input.
 function onPriceInputChange(event) {
   const inputValue = event.target.value;
   const filtredProductsByPrice = products.filter((product) =>
@@ -51,7 +57,11 @@ function onPriceInputChange(event) {
   console.log("filtredProductsByPrice", filtredProductsByPrice);
   productList.innerHTML = " ";
   renderProducts(filtredProductsByPrice);
+  if (inputValue === "") {
+    renderProducts(products);
+  }
 }
 
+//added event listeners on two inputs
 nameInputRef.addEventListener("input", onNameInputChange);
 priceInputRef.addEventListener("input", onPriceInputChange);
