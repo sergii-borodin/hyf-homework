@@ -111,10 +111,6 @@ jokeCreator(
 
 // Create an array with 3 items. All items should be functions.
 //Iterate through the array and call all the functions.
-// Create a function as a const and try creating a function normally.
-//Call both functions.Read up on this if you are interested:
-//https://stackoverflow.com/questions/1013385/what-is-the-difference-between-a-function-expression-vs-declaration-in-javascrip
-// Create an object that has a key whose value is a function. Try calling this function.
 
 const arrFn = [
   function fn1() {
@@ -131,3 +127,33 @@ const arrFn = [
 arrFn.forEach((fn) => {
   fn();
 });
+
+// Create a function as a const and try creating a function normally.
+// Call both functions.Read up on this if you are interested:
+function justAFunction() {
+  console.log("A function created normally");
+}
+
+const aFunctionWithConst = function () {
+  console.log("A const function");
+};
+
+justAFunction();
+aFunctionWithConst();
+
+// Create an object that has a key whose value is a function. Try calling this function.
+const obj = {
+  key1: function justAFunction1() {
+    console.log("A function1 as a value");
+  },
+  key2: function justAFunction2() {
+    console.log("A function2 as a value");
+  },
+  key3: function justAFunction3() {
+    console.log("A function3 as a value");
+  },
+};
+
+obj.key1();
+obj.key2();
+obj.key3();
