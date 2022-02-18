@@ -3,7 +3,6 @@ const bodyRef = document.getElementsByTagName("body");
 const inputCityRef = document.getElementById("inputCity");
 const checkWeatherBtnRef = document.getElementById("checkWeatherBtn");
 const errorNotification = document.createElement("p");
-const iconRef = document.getElementById("icon");
 const listOfWeatherDescriptionRef = document.getElementById(
   "listOfWeatherDescription"
 );
@@ -24,25 +23,24 @@ function onInputChange(e) {
 }
 
 function oncheckWeatherBtnClick(e) {
-  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city_Target}&appid=2673f5af061bc091866ecf8ec2167055`;
+  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city_Target}&units=metric&appid=2673f5af061bc091866ecf8ec2167055`;
   async function getWeatherData() {
     const response = await fetch(weatherURL);
     const dataWeather = await response.json();
-    // document.getElementById("para").textContent = dataWeather.name;
-    // document.getElementById("para").textContent = dataWeather.main.temp;
-    // document.getElementById("para").textContent = dataWeather.wind.speed;
-    // document.getElementById("para").textContent = dataWeather.wind.speed;
-    // document.getElementById("para").textContent = dataWeather.clouds.all;
-    // document.getElementById("para").textContent = dataWeather.sys.sunrise;
-    // document.getElementById("para").textContent = dataWeather.sys.sunset;
-    const dataArrWeather = [
-      dataWeather.name,
-      dataWeather.main.temp,
-      dataWeather.wind.speed,
-      dataWeather.clouds.all,
-      dataWeather.sys.sunrise,
-      dataWeather.sys.sunset,
-    ];
+    document.getElementById("chosenCity").textContent += " " + dataWeather.name;
+    document.getElementById("temperature").textContent +=
+      " " + Math.round(dataWeather.main.temp) + " °C";
+    document.getElementById("windSpeed").textContent +=
+      " " + Math.round(dataWeather.wind.speed * 10) / 10 + " m/s";
+    document.getElementById(
+      "weatherTypeIcon"
+    ).src = `http://openweathermap.org/img/wn/${dataWeather.weather[0].icon}.png`;
+    document.getElementById("clouds").textContent +=
+      " " + dataWeather.clouds.all + " %";
+    document.getElementById("sunriseTime").textContent +=
+      " " + new Date(dataWeather.sys.sunrise * 1000).toLocaleTimeString();
+    document.getElementById("sunsetTime").textContent +=
+      " " + new Date(dataWeather.sys.sunset * 1000).toLocaleTimeString();
     dataArrWeather.forEach((data) => {
       const liItem = document.createElement("li");
       liItem.textContent = data;
