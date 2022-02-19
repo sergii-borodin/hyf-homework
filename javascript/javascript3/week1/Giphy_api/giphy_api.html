@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>giphy api</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Giphy api</h1>
+      <div id="settings_menu">
+        <label for="keyword-input">Search for a GIF by keyword</label>
+        <input
+          id="keyword-input"
+          type="text"
+          placeholder="Enter a word"
+        /><br />
+        <label for="amount_input">Choose a limit of GIFs</label>
+        <input id="amount_input" type="number" /><br />
+        <button id="searchBtn">Search</button>
+      </div>
+      <div id="output_container">
+        <ul id="gifsList"></ul>
+      </div>
+    </div>
+    <script src="./giphy_api.js"></script>
+  </body>
+</html>

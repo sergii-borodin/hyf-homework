@@ -23,7 +23,7 @@ function onInputChange(e) {
 
 function oncheckWeatherBtnClick(e) {
   const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city_Target}&units=metric&appid=2673f5af061bc091866ecf8ec2167055`;
-  async function getWeatherData() {
+  (async function getWeatherData() {
     const response = await fetch(weatherURL);
     const dataWeather = await response.json();
     document.getElementById("chosenCity").innerText = dataWeather.name;
@@ -43,7 +43,7 @@ function oncheckWeatherBtnClick(e) {
     ).toLocaleTimeString();
     console.log(dataWeather);
     return response;
-  }
+  })();
 
   getWeatherData()
     .then((response) => console.log("success", response))
