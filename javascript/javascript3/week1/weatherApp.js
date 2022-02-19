@@ -13,7 +13,6 @@ checkWeatherBtnRef.addEventListener("click", oncheckWeatherBtnClick);
 
 function onFocus(e) {
   errorNotification.textContent = "";
-  city_Target = "";
 }
 
 function onInputChange(e) {
@@ -27,26 +26,23 @@ function oncheckWeatherBtnClick(e) {
   async function getWeatherData() {
     const response = await fetch(weatherURL);
     const dataWeather = await response.json();
-    document.getElementById("chosenCity").textContent += " " + dataWeather.name;
-    document.getElementById("temperature").textContent +=
-      " " + Math.round(dataWeather.main.temp) + " °C";
-    document.getElementById("windSpeed").textContent +=
-      " " + Math.round(dataWeather.wind.speed * 10) / 10 + " m/s";
+    document.getElementById("chosenCity").innerText = dataWeather.name;
+    document.getElementById("temperature").innerText =
+      Math.round(dataWeather.main.temp) + " °C";
+    document.getElementById("windSpeed").innerText =
+      Math.round(dataWeather.wind.speed * 10) / 10 + " m/s";
     document.getElementById(
       "weatherTypeIcon"
     ).src = `http://openweathermap.org/img/wn/${dataWeather.weather[0].icon}.png`;
-    document.getElementById("clouds").textContent +=
-      " " + dataWeather.clouds.all + " %";
-    document.getElementById("sunriseTime").textContent +=
-      " " + new Date(dataWeather.sys.sunrise * 1000).toLocaleTimeString();
-    document.getElementById("sunsetTime").textContent +=
-      " " + new Date(dataWeather.sys.sunset * 1000).toLocaleTimeString();
-    dataArrWeather.forEach((data) => {
-      const liItem = document.createElement("li");
-      liItem.textContent = data;
-      document.body.appendChild(liItem);
-    });
+    document.getElementById("clouds").innerText = dataWeather.clouds.all + " %";
+    document.getElementById("sunriseTime").innerText = new Date(
+      dataWeather.sys.sunrise * 1000
+    ).toLocaleTimeString();
+    document.getElementById("sunsetTime").innerText = new Date(
+      dataWeather.sys.sunset * 1000
+    ).toLocaleTimeString();
     console.log(dataWeather);
+    return response;
   }
 
   getWeatherData()

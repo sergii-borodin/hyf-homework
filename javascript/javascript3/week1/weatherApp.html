@@ -4,21 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Weather App</title>
   </head>
   <body>
-    <input id="inputCity" type="text" placeholder="Enter a City name" />
-    <button id="checkWeatherBtn">Check Weather</button>
+    <div id="top_container">
+      <input id="inputCity" type="text" placeholder="Enter a City name" />
+      <button id="checkWeatherBtn">Check Weather</button>
+    </div>
     <ul id="listOfWeatherDescription">
-      <li id="chosenCity">The chosen city:</li>
-      <li id="temperature">Temperature:</li>
-      <li id="windSpeed">Wind speed:</li>
       <li>
-        <img id="weatherTypeIcon" src="" alt="" /> Icon for the weather type:
+        <span>The chosen city:</span>
+        <p id="chosenCity"></p>
       </li>
-      <li id="clouds">How clowdy it is:</li>
-      <li id="sunriseTime">Sunrise is:</li>
-      <li id="sunsetTime">Sunset is:</li>
+      <li>
+        <span>Temperature:</span>
+        <p id="temperature"></p>
+      </li>
+      <li>
+        <span>Wind speed:</span>
+        <p id="windSpeed"></p>
+      </li>
+      <li>
+        <span>Icon for the weather type:</span>
+        <img id="weatherTypeIcon" src="" alt="" />
+      </li>
+      <li>
+        <span>How clowdy it is:</span>
+        <p id="clouds"></p>
+      </li>
+      <li>
+        <span>Sunrise is:</span>
+        <p id="sunriseTime"></p>
+      </li>
+      <li>
+        <span>Sunset is:</span>
+        <p id="sunsetTime"></p>
+      </li>
     </ul>
     <p id="para"></p>
     <script src="./weatherApp.js"></script>
