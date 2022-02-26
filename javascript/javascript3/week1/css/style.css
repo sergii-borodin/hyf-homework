@@ -1,0 +1,14 @@
+body {
+  background-color: skyblue;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 3px;
+}
+#top_container {
+  display: flex;
+  justify-content: space-evenly;
+}
