@@ -7,7 +7,6 @@ const listOfWeatherDescriptionRef = document.getElementById(
   "listOfWeatherDescription"
 );
 
-inputCityRef.addEventListener("change", onInputChange);
 inputCityRef.addEventListener("focus", onFocus);
 checkWeatherBtnRef.addEventListener("click", oncheckWeatherBtnClick);
 
@@ -15,13 +14,8 @@ function onFocus(e) {
   errorNotification.textContent = "";
 }
 
-function onInputChange(e) {
-  console.log(e.currentTarget.value);
-  city_Target = e.currentTarget.value;
-  return city_Target;
-}
-
 function oncheckWeatherBtnClick(e) {
+  city_Target = inputCityRef.value;
   const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city_Target}&units=metric&appid=2673f5af061bc091866ecf8ec2167055`;
   (async function getWeatherData() {
     const response = await fetch(weatherURL);
