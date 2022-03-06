@@ -21,25 +21,15 @@ function renderData(data) {
     itemRepo.appendChild(userName);
     for (let i = 0; i < account.items.length; i++) {
       const repo = account.items[i];
-      console.log(repo.git_url);
+      console.log(repo.clone_url);
       const repoName = document.createElement("h4");
       repoName.textContent = repo.name;
       itemRepo.appendChild(repoName);
       const link = document.createElement("a");
-      link.textContent = repo.git_url;
+      link.textContent = repo.clone_url;
 
       itemRepo.appendChild(link);
     }
-
-    // if (repo.items.length) {
-    //   repo.items.forEach((repo) => {
-    //     const repoName = document.createElement("p");
-    //     repoName.textContent = repo.items[0].name;
-
-    //     itemRepo.appendChild(repoName);
-    //
-    //   });
-    // }
     listOfRepos.appendChild(itemRepo);
   });
 }
