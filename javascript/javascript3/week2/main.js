@@ -5,28 +5,23 @@
 
 // Create an array of bad movies
 // Creat an array of bad movies since year 2000
-
-let result = fetch(
-  "https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0ae8d0a4/raw/02d8bc9ec9a73e463b13c44df77a87255def5ab9/movies.json"
-).then((response) =>
-  response
-    .json()
-    .then((arrOfAllmovies) => {
-      const badMovie = 4;
-      const arrayOfBadMovies = arrOfAllmovies.filter(
-        (movie) => movie.rating < badMovie
-      );
-      console.log(arrayOfBadMovies);
-      return arrayOfBadMovies;
-    })
-    .then((arrayOfBadMovies) => {
-      const yearLimit = 2000;
-      const arrayOfBadMoviesSince2000 = arrayOfBadMovies.filter(
-        (movie) => movie.year > yearLimit
-      );
-      console.log(arrayOfBadMoviesSince2000);
-    })
-);
+const moviesUrl =
+  "https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0ae8d0a4/raw/02d8bc9ec9a73e463b13c44df77a87255def5ab9/movies.json";
+const yearLimit = 2000;
+const allMovies = fetch(moviesUrl)
+  .then((res) => res.json())
+  .then((arrOfAllmovies) => {
+    const badMovie = 4;
+    const arrayOfBadMovies = arrOfAllmovies.filter(
+      (movie) => movie.rating < badMovie
+    );
+    console.log(arrayOfBadMovies);
+    const arrayOfBadMoviesSince2000 = arrayOfBadMovies.filter(
+      (movie) => movie.year > yearLimit
+    );
+    console.log("arrayOfBadMoviesSince2000", arrayOfBadMoviesSince2000);
+    return arrayOfBadMoviesSince2000;
+  });
 
 // // Promise that resolves after set time
 // // Create a function that has one parameter: resolveAfter.
