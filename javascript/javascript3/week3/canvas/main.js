@@ -24,7 +24,7 @@ class Circle {
       this.r,
       this.startAngle,
       this.endAngle,
-      this.fillColor
+      this.fillStyle
     );
     context.fill();
   }
