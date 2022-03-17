@@ -40,11 +40,9 @@ function onKeyUpHandler(e) {
   if (e.key === "s") {
     leftPlayerCounter += 1;
     leftPlayerCounterOutputRef.textContent = leftPlayerCounter;
-    return leftPlayerCounter;
   } else if (e.key === "l") {
     rightPlayerCounter += 1;
     rightPlayerCounterOutputRef.textContent = rightPlayerCounter;
-    return rightPlayerCounter;
   }
 }
 function onStartBtnClick(e) {

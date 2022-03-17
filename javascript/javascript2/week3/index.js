@@ -27,11 +27,11 @@ btnRef.addEventListener("click", () => {
 // Now create a new third function that has one parameter: planetLogFunction.
 //The only thing the third function should do is call the provided parameter function.
 // Try call the third function once with the Earth function and once with the Saturn function.
-const earthLogging = function logOutEarth() {
+const earthLogging = function () {
   console.log("Earth");
 };
 
-const saturnLogging = function logOutSaturn() {
+const saturnLogging = function () {
   console.log("Saturn");
 };
 
@@ -67,24 +67,18 @@ function onClick() {
 // When called the function should wait delay seconds and then call the provided callback function.
 // Try and call this function with different delays and different callback functions
 
-function runAfterDelay(delay, callback) {
+function runAfterDelay(delay, logger) {
   const delayInMs = delay * 1000;
-  setTimeout(callback, delayInMs);
+  setTimeout(logger, delayInMs);
 }
 
-runAfterDelay(4, function (params) {
-  console.log("Should be logged after 4 seconds");
-});
+runAfterDelay(4, () => console.log("Should be logged after 4 seconds"));
 
-runAfterDelay(10, function (params) {
-  console.log("Should be logged after 10 seconds");
-});
+runAfterDelay(10, () => console.log("Should be logged after 10 seconds"));
 
 // 8. Check if we have double clicked on the page. A double click is defined by two clicks within 0.5 seconds.
 // If a double click has been detected, log out the text: "double click!"
-window.addEventListener("dblclick", (e) =>
-  e ? console.log("double click!") : null
-);
+window.addEventListener("dblclick", () => console.log("double click!"));
 
 // 9. Create a function called jokeCreator that has three parameters:
 // shouldTellFunnyJoke - boolean, logFunnyJoke - function and logBadJoke - function.
