@@ -30,10 +30,11 @@ startBtnRef.addEventListener("click", onStartBtnClick);
 
 function onInputChange(e) {
   gameDuration = parseInt(e.target.value);
-  if (!isNaN(gameDuration)) {
-    startBtnRef.disabled = false;
-    return gameDuration;
+  if (isNaN(gameDuration)) {
+    return;
   }
+  
+  startBtnRef.disabled = false;
 }
 
 function onKeyUpHandler(e) {
