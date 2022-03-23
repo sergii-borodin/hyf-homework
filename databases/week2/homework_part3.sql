@@ -37,7 +37,7 @@ JOIN
  -- Find how many tasks where created in each month, e.g. how many tasks 
  -- were created in october, how many tasks were created in november, etc. (hint: use group by)
  SELECT
-    month(task.created) creating_time, COUNT(task.created) as task_amount
+    month(task.created) creating_month, COUNT(task.created) as task_amount
 FROM
     task
 GROUP BY creating_time;

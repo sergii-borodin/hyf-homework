@@ -7,23 +7,23 @@
 
 -- Submit an image or PDF of your entity relationship diagram, and a .sql file with the CREATE TABLE statements.
 CREATE DATABASE customer_service;
-DEFAULT CHARACTER SET = "utf8mb4";
+DEFAULT CHARACTER SET = 'utf8mb4';
 USE customer_service;
 -- Create table Customer: with columns: id, name, phone, email, adress
+CREATE Table `Address`(
+    `id` INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `city` VARCHAR(255) NOT NULL,
+    `street` VARCHAR(255) NOT NULL,
+    `postal_code` VARCHAR(255) NOT NULL
+);
 CREATE Table `Customer`(
     `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `phone` VARCHAR(255),
-    `email` VARCHAR(255)
+    `email` VARCHAR(255),
+    `address_id` INT UNSIGNED NOT NULL,
+    CONSTRAINT `fk_address_id` FOREIGN KEY (`address_id`) REFERENCES `Address`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-ALTER table `Customer`
-MODIFY COLUMN INT UNSIGNED NOT NULL FOREIGN KEY (`address_id`) REFERENCES `Address`(`id`);
-
-ALTER TABLE `Customer` 
-  ADD CONSTRAINT id_customer_address
-  FOREIGN KEY (`address_id`) 
-  REFERENCES `Address`(`id`);
 
 CREATE Table `Status`(
     `id` INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -51,13 +51,6 @@ CREATE Table `Order_item`(
     CONSTRAINT `fk_order_id` FOREIGN KEY (`order_id`) REFERENCES `Order`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `fk_item_id`FOREIGN KEY (`item_id`) REFERENCES `Item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
     );
-
-CREATE Table `Address`(
-    `id` INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    `city` VARCHAR(255) NOT NULL,
-    `street` VARCHAR(255) NOT NULL,
-    `postal_code` VARCHAR(255) NOT NULL
-);
 
 CREATE Table `Account_type`(
     `id` INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
