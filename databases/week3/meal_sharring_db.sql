@@ -34,6 +34,8 @@ CREATE TABLE `Review` (
   CONSTRAINT `fk_meal_review` FOREIGN KEY (`meal_id`) REFERENCES `Meal`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- Now add a couple of different meals, reservations and reviews with different attributes.
+
 -- Insert data into meal table
 INSERT INTO `Meal`(
   `title`, `description`, `location`, `when`, `max_reservations`, `price`, `created_date`
@@ -82,11 +84,60 @@ INSERT INTO `Review`(
   )
 VALUES
 (
-"Good", "Food was good. The staff was great. Very welcoming and friendly.","2022-03-26", 5, 1
+"Good", "Food was good. The staff was great. Very welcoming and friendly.", "2022-03-26", 5, 1
 ), (
-"Excellent", " Always have a great, smooth experience here. The staff are friendly, respectful, caring and courteous of your time.","2022-03-25", 5, 3
+"Excellent", " Always have a great, smooth experience here. The staff are friendly, respectful, caring and courteous of your time.", "2022-03-25", 5, 3
 ), (
-"Bad", "Bad atmosphere and a food was overcooked.","2022-03-24", 3, 2
+"Bad", "Bad atmosphere and a food was overcooked.", "2022-03-24", 3, 2
 ), (
-"Very good", "Best food ever, but expensive","2022-03-21", 4, 4
-)
+"Very good", "Best food ever, but expensive", "2022-03-21", 4, 4
+);
+
+-- Additional queries
+
+-- Functionality
+-- Get meals that has a price smaller than a specific price fx 90
+SELECT *
+FROM `Meal`
+WHERE `price` < 120;
+
+-- Get meals that still has available reservations
+SELECT *
+FROM `Meal`
+WHERE `max_reservations` > 0;
+
+-- Get meals that partially match a title. Rød grød med will match the meal with the title Rød grød med fløde
+SELECT *
+from `Meal`
+WHERE `title` LIKE "%pasta%";
+
+-- Get meals that has been created between two dates
+SELECT *
+FROM `Meal`
+WHERE `created_date` BETWEEN "2022-01-01" AND "2022-03-26";
+
+-- Get only specific number of meals fx return only 5 meals
+SELECT *
+FROM `Meal`
+LIMIT 2;
+
+-- Get the meals that have good reviews
+SELECT *
+FROM `Meal`
+JOIN `Review` ON `Meal`.`id` = `Review`.`meal_id`
+WHERE `stars` > 4;
+
+-- Get reservations for a specific meal sorted by created_date
+SELECT *
+FROM `Meal`
+JOIN `Reservation` ON `Meal`.`id` = `Reservation`.`meal_id`
+WHERE `Meal`.`id` = 1
+ORDER BY `Reservation`.`created_date` ASC;
+
+-- Sort all meals by average number of stars in the reviews
+SELECT `Meal`.`title`,
+ROUND(AVG(`Review`.`stars`),1) AS `avg_amount_of_stars`
+FROM `Meal`
+JOIN `Review` ON `Meal`.`id` = `Review`.`meal_id`
+GROUP BY `Meal`.`title`
+ORDER BY `avg_amount_of_stars` DESC;
