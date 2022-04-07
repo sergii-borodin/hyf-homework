@@ -11,7 +11,7 @@ class Circle {
     return 2 * 3.14 * this.radius;
   }
   getArea() {
-    return 3.14 * Math.pow(this.radius, 2);
+    return Math.PI * Math.pow(this.radius, 2);
   }
 }
 
