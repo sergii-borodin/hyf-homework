@@ -38,7 +38,11 @@ router.get("/", async (request, response) => {
       }
       // Only specific number of meals
     } else if (limit) {
-      response.send(meals.slice(0, limit));
+      response.send(
+        meals
+          .filter((meal) => meal.price < maxPrice || meal.title.includes(title))
+          .slice(0, limit)
+      );
     } else response.status(400).send("Invalid query parameter");
   } else {
     response.send(meals);
@@ -50,7 +54,7 @@ router.get("/:id", async (request, response) => {
   const mealId = parseInt(request.params.id);
   const found = meals.some((meal) => meal.id === mealId);
   if (found) {
-    response.json(meals.filter((meal) => meal.id === mealId));
+    response.json(meals.find((meal) => meal.id === mealId));
   } else {
     response.status(400).json({ msg: `No meal with id of ${mealId}` });
   }
