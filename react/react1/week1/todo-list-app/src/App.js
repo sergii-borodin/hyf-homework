@@ -9,7 +9,7 @@ import TodolistItem from "./todoListItem";
 function App() {
   return (
     <div className="App">
-      {<TodoListTitle/>}
+      <TodoListTitle/>
       {todoList.map((task) => {
         return (
           <TodolistItem key={task.title} title={task.title} deadline={task.deadline} />
