@@ -29,7 +29,7 @@ const TodoList = () => {
   // add new To-do item to the list
   const addNewTodo = () => {
     const newTodo = {
-      id: todos.length + 1,
+      id: todos[todos.length - 1].id + 1,
       description: 'random Todo',
       isComplited: false,
     }
