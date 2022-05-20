@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { todos } from './todos'
+import { initialTodos } from './todos'
 
 const TodoList = () => {
   //   mark a To-do as done
-  const [todosState, setTodosState] = useState(todos)
-  console.log(todosState)
+  const [todos, setTodos] = useState(initialTodos)
   const setTodoAsCompleted = (id) => {
-    let newTodosState = todosState.map((todo) => {
+    let newTodosState = todos.map((todo) => {
       if (id === todo.id) {
         if (todo.isComplited === false) {
           todo.isComplited = true
@@ -18,11 +17,11 @@ const TodoList = () => {
       }
       return todo
     })
-    setTodosState(newTodosState)
+    setTodos(newTodosState)
   }
   // delete a To-do item by id
   const deleteTodoById = (id) => {
-    setTodosState((todosState) => {
+    setTodos((todosState) => {
       let newTodosState = todosState.filter((todo) => todo.id !== id)
       return newTodosState
     })
@@ -30,22 +29,22 @@ const TodoList = () => {
   // add new To-do item to the list
   const addNewTodo = () => {
     const newTodo = {
-      id: todosState.length + 1,
+      id: todos.length + 1,
       description: 'random Todo',
       isComplited: false,
     }
-    setTodosState((prevTodoState) => [...prevTodoState, newTodo])
+    setTodos((prevTodoState) => [...prevTodoState, newTodo])
   }
   return (
     <>
       <button className='button' onClick={() => addNewTodo()}>
         Add New Todo
       </button>
-      <button className='button' onClick={() => setTodosState([])}>
+      <button className='button' onClick={() => setTodos([])}>
         Delete all
       </button>
-      {todosState.length ? (
-        todosState.map((todo) => {
+      {todos.length ? (
+        todos.map((todo) => {
           const { id, description, isComplited } = todo
           return (
             <div className='item' key={id}>

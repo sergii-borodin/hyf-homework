@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import { todos } from './todos'
+import { initialTodos } from './todos'
 
 const Input = () => {
   const [valueState, setValueState] = useState('')
-  const [currentTodo, setNewTodo] = useState(todos)
+  const [todos, setTodos] = useState(initialTodos)
   const createNewTodo = () => {
     const newTodo = {
-      id: currentTodo.length + 1,
+      id: todos[todos.length - 1].id + 1,
       description: valueState,
     }
-    setNewTodo((prevTodos) => {
+    setTodos((prevTodos) => {
       return [...prevTodos, newTodo]
     })
-    console.log(currentTodo)
+    console.log(todos)
   }
   return (
     <div className='div'>

@@ -1,4 +1,4 @@
-export const todos = [
+export const initialTodos = [
   {
     id: 1,
     description: 'Get out of bed',
