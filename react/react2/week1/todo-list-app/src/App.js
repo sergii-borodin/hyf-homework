@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { UsersList } from './components/UsersList'
+import { UserContext } from './components/UserContext'
+import { Input } from './components/Input'
+import { RequestStatus } from './components/RequestStatus'
+import { Header } from './components/Header'
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -29,7 +34,6 @@ const App = () => {
         .then((data) => {
           const users = data.items
           setUsers(users)
-          console.log(users)
           setIsEmpty(false)
           setIsLoading(false)
         })
@@ -39,124 +43,28 @@ const App = () => {
       setIsEmpty(true)
     }
   }, [query, url])
+
+  const contextValue = {
+    inputHandler: inputHandler,
+    users: users,
+    title: 'GitHub user searcher',
+  }
+
   return (
-    <>
-      <Header title={'GitHub user searcher'} />
+    <UserContext.Provider value={contextValue}>
       <div className='container'>
-        <Input inputHandler={inputHandler} />
-        {isLoading && <ReaquestStatus status={'LOADING ...'} />}
-        {isError && <ReaquestStatus status={'ERROR ... 404. Bad request'} />}
+        <Header />
+        <Input />
+        {isLoading && <RequestStatus status={'LOADING ...'} />}
+        {isError && <RequestStatus status={'ERROR ... 404. Bad request'} />}
         {isEmpty ? (
-          <ReaquestStatus status={'EMPTY IMPUT ... Type to start searching'} />
+          <RequestStatus status={'EMPTY IMPUT ... Type to start searching'} />
         ) : (
-          <UsersList users={users} />
+          <UsersList />
         )}
       </div>
-    </>
+    </UserContext.Provider>
   )
 }
-
-const Header = ({ title }) => {
-  return <h1>{title}</h1>
-}
-
-const Input = ({ inputHandler }) => {
-  return <input className='input' type='text' onChange={inputHandler} />
-}
-
-const ReaquestStatus = ({ status }) => {
-  return (
-    <div>
-      <h2>{status}</h2>
-    </div>
-  )
-}
-
-const UsersList = ({ users }) => {
-  console.log(users)
-  return (
-    <ul className='users'>
-      {users.map((user) => (
-        <li className='item' key={user.id}>
-          <h4>{user.login}</h4>
-          <img className='img' src={user.avatar_url} alt='user.login' />
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-// function App() {
-//   const [query, setQuery] = useState('')
-//   const [users, setUsers] = useState([])
-//   const [requestState, setRequestState] = useState('initial')
-
-//   const inputChangeHandler = (e) => {
-//     setQuery(e.target.value)
-//   }
-
-//   useEffect(() => {
-//     const url = `https://api.github.com/search/usrs?q=${query}`
-//     const getData = async () => {
-//       if (query !== '') {
-//         setRequestState('loading')
-//         const response = await fetch(url)
-//         if (!response.ok) {
-//           const message = `An error has occured: ${response.status}`
-//           setRequestState('error')
-//           throw new Error(message)
-//         }
-//         console.log('response', response)
-//         console.log('url', url)
-//         const data = await response.json()
-
-//         if (data && data.message !== 'Not Found') {
-//           const users = data.items
-
-//           const usersArr = users.map((user) => user.login)
-//           setUsers(usersArr)
-//           setRequestState('success')
-//         }
-//       } else {
-//         console.log("User doesn't exist")
-//         setRequestState('empty imput')
-//       }
-//     }
-//     getData()
-//   }, [query])
-
-//   console.log('users', users)
-
-//   console.log('query', query)
-
-//   const isLoading = requestState === 'initial' || requestState === 'loading'
-//   const isError = requestState === 'error'
-//   const isEmpty = requestState === 'empty imput'
-//   return (
-//     <div className='App'>
-//       <h1>GitHub User Searcher</h1>
-//       <input
-//         type='select'
-//         name='users'
-//         id='users'
-//         placeholder='search'
-//         onChange={inputChangeHandler}
-//         onKeyUp={inputChangeHandler}
-//         onPaste={inputChangeHandler}
-//       />
-//       <h4>Search status : {requestState}</h4>
-//       <ul>
-//         {isLoading ? (
-//           <li>LOADING ....</li>
-//         ) : (
-//           users.map((user, i) => {
-//             console.log('user', user)
-//             return <li key={i}>{user}</li>
-//           })
-//         )}
-//       </ul>
-//     </div>
-//   )
-// }
 
 export default App
