@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import './App.css'
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -22,6 +21,7 @@ const App = () => {
           } else {
             setIsLoading(false)
             setIsError(true)
+            setIsEmpty(false)
             throw new Error(resp.statusText)
           }
         })
@@ -39,40 +39,32 @@ const App = () => {
       setIsEmpty(true)
     }
   }, [query, url])
-
-  if (isLoading) {
-    return (
-      <>
-        <input type='text' onChange={inputHandler} />
-        <Header status={'LOADING ...'} />
-      </>
-    )
-  }
-  if (isError) {
-    return (
-      <>
-        <input type='text' onChange={inputHandler} />
-        <Header status={'ERROR ... 404. Bad request'} />
-      </>
-    )
-  }
-  if (isEmpty) {
-    return (
-      <>
-        <input type='text' onChange={inputHandler} />
-        <Header status={'EMPTY IMPUT ... Type to start searching'} />
-      </>
-    )
-  }
   return (
     <>
-      <input type='text' onChange={inputHandler} />
-      <UsersList users={users} />
+      <Header title={'GitHub user searcher'} />
+      <div className='container'>
+        <Input inputHandler={inputHandler} />
+        {isLoading && <ReaquestStatus status={'LOADING ...'} />}
+        {isError && <ReaquestStatus status={'ERROR ... 404. Bad request'} />}
+        {isEmpty ? (
+          <ReaquestStatus status={'EMPTY IMPUT ... Type to start searching'} />
+        ) : (
+          <UsersList users={users} />
+        )}
+      </div>
     </>
   )
 }
 
-const Header = ({ status }) => {
+const Header = ({ title }) => {
+  return <h1>{title}</h1>
+}
+
+const Input = ({ inputHandler }) => {
+  return <input className='input' type='text' onChange={inputHandler} />
+}
+
+const ReaquestStatus = ({ status }) => {
   return (
     <div>
       <h2>{status}</h2>
@@ -83,9 +75,12 @@ const Header = ({ status }) => {
 const UsersList = ({ users }) => {
   console.log(users)
   return (
-    <ul>
+    <ul className='users'>
       {users.map((user) => (
-        <li key={user.id}>{user.login}</li>
+        <li className='item' key={user.id}>
+          <h4>{user.login}</h4>
+          <img className='img' src={user.avatar_url} alt='user.login' />
+        </li>
       ))}
     </ul>
   )
