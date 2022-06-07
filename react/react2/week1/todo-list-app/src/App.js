@@ -8,7 +8,6 @@ import { Header } from './components/Header'
 const App = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
-  const [isEmpty, setIsEmpty] = useState(true)
   const [query, setQuery] = useState('')
   const [users, setUsers] = useState([])
 
@@ -20,34 +19,31 @@ const App = () => {
     setIsLoading(true)
     if (query !== '') {
       fetch(url)
-        .then((resp) => {
-          if (resp.status >= 200 && resp.status <= 299) {
-            return resp.json()
+        .then((response) => {
+          if (response.status >= 200 && response.status <= 299) {
+            return response.json()
           } else {
             setIsLoading(false)
             setIsError(true)
-            setIsEmpty(false)
-            throw new Error(resp.statusText)
+            throw new Error(response.statusText)
           }
         })
 
         .then((data) => {
           const users = data.items
           setUsers(users)
-          setIsEmpty(false)
           setIsLoading(false)
         })
         .catch((error) => console.log(error))
     } else {
       setIsLoading(false)
-      setIsEmpty(true)
+      setUsers([])
     }
   }, [query, url])
 
   const contextValue = {
     inputHandler: inputHandler,
     users: users,
-    title: 'GitHub user searcher',
   }
 
   return (
@@ -57,8 +53,8 @@ const App = () => {
         <Input />
         {isLoading && <RequestStatus status={'LOADING ...'} />}
         {isError && <RequestStatus status={'ERROR ... 404. Bad request'} />}
-        {isEmpty ? (
-          <RequestStatus status={'EMPTY IMPUT ... Type to start searching'} />
+        {users.length === 0 ? (
+          <RequestStatus status={'No results...'} />
         ) : (
           <UsersList />
         )}
