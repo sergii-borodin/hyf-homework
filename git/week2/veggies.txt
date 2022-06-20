@@ -1,5 +1,7 @@
 Carrot
 Tomato 
-Potato
+Cucumber
 Garlic
 Beet
+Onion
+Radish
