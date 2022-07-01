@@ -1,6 +1,7 @@
 Carrot
 Onion
 Potato
+Garlic
 Cabbage
 Cucumber
 Beet
