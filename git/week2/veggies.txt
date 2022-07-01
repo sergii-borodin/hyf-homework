@@ -1,5 +1,7 @@
 Carrot
 Onion
-Tomato
+Potato
 Cabbage
 Cucumber
+Beet
+Corn
